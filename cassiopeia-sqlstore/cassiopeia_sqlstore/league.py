@@ -1,7 +1,7 @@
 from sqlalchemy import Table, Column, Integer, String, BigInteger, Boolean, ForeignKeyConstraint, Numeric
 from sqlalchemy.orm import foreign, remote, backref
 
-from cassiopeia.dto.league import LeagueListDto, LeaguePositionDto, LeaguePositionsDto
+from cassiopeia.dto.league import ChallengerLeagueListDto as LeagueListDto, LeaguePositionDto, LeaguePositionsDto
 from cassiopeia.dto.common import DtoObject
 from cassiopeia.data import Tier, Division, Platform
 

@@ -15,7 +15,7 @@ from cassiopeia.dto.match import MatchDto, TimelineDto
 from cassiopeia.dto.championmastery import ChampionMasteryListDto, ChampionMasteryDto
 from cassiopeia.dto.champion import ChampionRotationDto
 from cassiopeia.dto.spectator import CurrentGameInfoDto, FeaturedGamesDto
-from cassiopeia.dto.league import LeagueListDto, LeaguePositionsDto, ChallengerLeagueListDto, MasterLeagueListDto, GrandmasterLeagueListDto
+#from cassiopeia.dto.league import ChallengerLeagueListDto, MasterLeagueListDto, GrandmasterLeagueListDto
 from cassiopeia.dto.status import ShardStatusDto
 
 from cassiopeia.datastores.uniquekeys import convert_region_to_platform
@@ -27,7 +27,7 @@ from .timeline import SQLTimeline
 from .champion import SQlChampionRotation
 from .championmastery import SQLChampionMastery
 from .spectator import SQLCurrentGameInfo, SQLCurrentGameParticipant
-from .league import SQLLeague, SQLLeaguePosition, SQLLeaguePositions
+#from .league import SQLLeague, SQLLeaguePosition, SQLLeaguePositions
 from .status import SQLShardStatus
 
 T = TypeVar("T")
@@ -45,8 +45,8 @@ default_expirations = {
     TimelineDto: -1,
     SummonerDto: datetime.timedelta(days=1),
     CurrentGameInfoDto: datetime.timedelta(hours=0.5),
-    LeagueListDto: datetime.timedelta(hours=6),
-    LeaguePositionsDto: datetime.timedelta(hours=6),
+    #LeagueListDto: datetime.timedelta(hours=6),
+    #LeaguePositionsDto: datetime.timedelta(hours=6),
     ShardStatusDto: datetime.timedelta(hours=1),
 }
 
@@ -383,7 +383,8 @@ class SQLStore(DataSource, DataSink):
     ###################
     # League Endpoint #
     ###################
-
+    '''
+    Note: I'm disabling the league endpoint to make this store compile. I will update this part as soon as possible
     # Insert league
     @put.register(LeagueListDto)
     @put.register(ChallengerLeagueListDto)
@@ -553,7 +554,7 @@ class SQLStore(DataSource, DataSink):
             session.merge(position)
 
         self._put(SQLLeaguePositions(summonerId=item["summonerId"], platformId=platform, positions=[]))
-
+    '''
     #######################
     # LoL-Status Endpoint #
     #######################
